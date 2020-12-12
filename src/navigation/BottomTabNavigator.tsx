@@ -1,4 +1,4 @@
-import { Ionicons } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
@@ -6,9 +6,9 @@ import * as React from 'react';
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 
-import Home from '../screens/Home';
+import Dashboard from '../screens/Dashboard';
 
-import { BottomTabParamList, HomeParamList } from './navigationTypes';
+import { BottomTabParamList, MainParamList } from './navigationTypes';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -17,13 +17,13 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="Home"
+      initialRouteName="Dashboard"
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
       <BottomTab.Screen
-        name="Home"
-        component={SearchNavigator}
+        name="Dashboard"
+        component={MainNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-search" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="inbox" color={color} />,
         }}
       />
     </BottomTab.Navigator>
@@ -31,23 +31,23 @@ export default function BottomTabNavigator() {
 }
 
 function TabBarIcon(props: { name: string; color: string }) {
-  return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;
+  return <Feather size={30} style={{ marginBottom: -3 }} {...props} />;
 }
 
-const HomeStack = createStackNavigator<HomeParamList>();
+const MainStack = createStackNavigator<MainParamList>();
 
-function SearchNavigator() {
+function MainNavigator() {
   return (
-    <HomeStack.Navigator>
-      <HomeStack.Screen
-        name="Home"
-        component={Home}
+    <MainStack.Navigator>
+      <MainStack.Screen
+        name="Dashboard"
+        component={Dashboard}
         options={
           { 
             headerShown: false,
           }
         }
       />
-    </HomeStack.Navigator>
+    </MainStack.Navigator>
   );
 }

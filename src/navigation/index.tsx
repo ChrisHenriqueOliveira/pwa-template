@@ -3,13 +3,13 @@ import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 import { ColorSchemeName } from 'react-native';
 
+import LoginScreen from '../screens/Login';
 import NotFoundScreen from '../screens/NotFound';
+
 import { RootStackParamList } from './navigationTypes';
 import BottomTabNavigator from './BottomTabNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
 
-// If you are not familiar with React Navigation, we recommend going through the
-// "Fundamentals" guide: https://reactnavigation.org/docs/getting-started
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
     <NavigationContainer
@@ -20,22 +20,24 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
   );
 }
 
-// A root stack navigator is often used for displaying modals on top of all other content
-// Read more here: https://reactnavigation.org/docs/modal
-const Stack = createStackNavigator<RootStackParamList>();
+const RootStack = createStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
   return (
-    <Stack.Navigator screenOptions=
+    <RootStack.Navigator screenOptions=
     {
       { 
         headerShown: false,
         gestureEnabled: true, 
-        gestureDirection: "horizontal"
+        gestureDirection: "horizontal",
+        cardStyle: { backgroundColor: '#312e38' },
       }
     }>
-      <Stack.Screen name="Root" component={BottomTabNavigator} />
-      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
-    </Stack.Navigator>
+      {1 + 1 === 3 ? (
+        <RootStack.Screen name="Root" component={BottomTabNavigator} />
+      ) : (
+        <RootStack.Screen name="Login" component={LoginScreen} />
+      )}
+    </RootStack.Navigator>
   );
 }

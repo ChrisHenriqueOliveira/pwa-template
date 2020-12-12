@@ -3,9 +3,9 @@ import { KeyboardAvoidingView, Platform, Alert } from 'react-native';
 import { Button } from "react-native-elements";
 import { useNavigation } from '@react-navigation/native';
 
-import { Container } from './styles';
+import { Container, LoginButton } from './styles';
 
-const Home: React.FC = () => {
+const Login: React.FC = () => {
 
   return (
     <>
@@ -15,19 +15,11 @@ const Home: React.FC = () => {
           enabled
         >
         <Container> 
-          <Button
-            buttonStyle={{ width: 150 }}
-            containerStyle={{ margin: 8 }}
-            icon={{}}
-            loadingProps={{ animating: true }}
-            onPress={() => alert("chhlick")}
-            title="Hello"
-            titleProps={{}}
-          />   
+          <LoginButton iconName="send"> Login </LoginButton>
         </Container>
       </KeyboardAvoidingView>
     </>
   );
 };
 
-export default Home;
+export default Login;
